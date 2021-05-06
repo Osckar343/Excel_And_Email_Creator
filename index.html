@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Automatization</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/loading_animation.css">
+  </head>
+  <body>
+
+    <section id="input_info">
+      <div class="container">
+
+        <form id="form" name="submit" method="POST" enctype="multipart/form-data">
+          <label for="firstName">First Name:</label><br>
+          <input type="text" id="firstName" name="firstName"placeholder="Óscar Andrés" oninput="updateCurp()"><br>
+
+          <label for="secondName">Second Name:</label><br>
+          <input type="text" id="secondName" name="secondName" placeholder="Méndez Hernández" onkeypress="updateCurp()" value=""><br>
+
+          <label for="curp">CURP:</label><br> <!-- Check how to make a Curp-->
+          <div class="curp">
+            <input  id="curp1" name="curp1" class="fields"  onkeypress="return onlyCharacters(event)" oninput="validateCharacters('curp1','curp2',4)"><br>
+            <input  id="curp2" name="curp2" class="fields"  onkeypress="return onlyNumbers(event)" oninput="validateCharacters('curp2','curp3',6); updateRFC('curp2','rfc2','imss2');"><br>
+            <input  placeholder="M" id="curp3" name="curp3" class="fields"  onkeypress="return onlySpecificCharacters(event,'H','M','h','m')"oninput="validateCharacters('curp3','curp4',1)"><br>
+            <input  placeholder="SP" id="curp4" name="curp4" class="fields"  onkeypress="return onlyCharacters(event)" oninput="validateCharacters('curp4','curp5',2)"><br>
+            <input  id="curp5" class="fields"  name="curp5" onkeypress="return onlyCharacters(event)" oninput="validateCharacters('curp5','curp6',3)"><br>
+            <input  placeholder="01" id="curp6" name="curp6" class="fields"  onkeypress="return onlyNumbers(event)" oninput="validateCharacters('curp6','rfc1',2)"><br>
+          </div>
+
+          <label for="rfc">RFC:</label><br>
+
+          <div class="curp">
+            <input  id="rfc1" name="rfc1"class="fields"  onkeypress="return onlyCharacters(event)" oninput="validateCharacters('rfc1','rfc2',4)"><br>
+            <input  id="rfc2" name="rfc2"class="fields"  onkeypress="return onlyNumbers(event)" oninput="validateCharacters('rfc2','rfc3',6);"><br>
+            <input  placeholder="0H1" id="rfc3" name="rfc3" class="fields"  oninput="validateCharacters('rfc3','imss1',3)"><br>
+          </div>
+
+          <label for="imssID">IMSS:</label><br> <!-- 11 Dígitos -->
+
+          <div class="curp">
+            <input  placeholder="6484" id="imss1" name="imss1" class="fields"  onkeypress="return onlyNumbers(event)" oninput="validateCharacters('imss1','imss2',4)"><br>
+            <input  id="imss2" class="fields"  name="imss2" onkeypress="return onlyNumbers(event)" oninput="validateCharacters('imss2','imss3',2);"><br>
+            <input  placeholder="06484" id="imss3" name="imss3" class="fields"  onkeypress="return onlyNumbers(event)" oninput="validateCharacters('imss3','phoneNumber',5)"><br>
+          </div>
+
+          <label for="phoneNumber">Phone Number:</label><br> <!-- 11 Dígitos -->
+          <input type="text" id="phoneNumber"  name="phoneNumber"onkeypress="return onlyNumbers(event)" oninput="validateCharacters('phoneNumber','statementType',14)" placeholder="44 46 54 98 74"><br>
+
+          <label for="credit">Credit</label><br>
+
+
+            <select class="select" id="statementType" name="statementType"onchange="showPayStatement('statementType')">
+              <option value="NONE">None</option>
+              <option value="INFONAVIT">INFONAVIT</option>
+              <option value="FONACOT">FONACOT</option>
+            </select>
+
+
+          <div id="valueOfstatementType" style="display: none;">
+            <label for="statementTypeValue">Pay per week: </label><br> <!-- 11 Dígitos -->
+            <input type="text" id="statementTypeValue" name="statementTypeValue" onkeypress="return onlyNumbers(event)" oninput="validateCharacters('statementTypeValue','',6)" placeholder="$500" value="0"><br>
+          </div>
+
+          <div id="file_input">
+            <input type="file" name="file" id="file">
+            <!--<label for="file">Upload image</label>-->
+          </div>
+
+
+          <input type="submit" value="Generate" name="submit" onclick="generateInfo(event)">
+
+        </form>
+        <!--Generate an excel file-->
+      </div>
+    </section>
+
+    <section>
+
+      <div id="loading" class="loading">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+      <div id="log">
+
+          <!--<div class="container">
+            <a id="file_generated_link" href="'.$route_fileExcelDownload.'">
+                <div id="file_generated" class="part_of_info wow animate__animated animate__bounceIn">
+                  <div class="container_img">
+                    <img src="img/excel_icon.png">
+              </div>
+                <p class="text_field">'.$_'eDivided[0].'</p>
+              </div>
+            </a>
+
+              <div id="create_email" class="part_of_info animate__animated animate__bounceIn animate__delay-1s" onclick="generateEmail(event)">
+               <div class="container_img">
+                  <img src="img/outlook_icon.png">
+                </div>
+                <p>Create email</p>
+              </div>
+          </div>-->
+        </div>
+
+    </section>
+
+    <footer>
+      <p>By Óscar Méndez, for personal purposes.</p>
+      <p>You can see the code of this small project (Version 1.0.0) on my <a href="https://github.com/Osckar343/SimpleExcelAndEmailCreator" target="_blank">GitHub Page</a></p><br>
+      <p>This page uses <b>PHPExcel</b> and <b>Animate.CSS</b> libraries.</p>
+
+    </footer>
+
+
+
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <script src="js/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+
+  <script type="text/javascript" src="js/updateText.js"></script>
+  <script type="text/javascript" src="js/generate.js"></script>
+</html>
