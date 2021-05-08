@@ -216,3 +216,66 @@ footer{
     margin-top: 100px;
   }
 }
+
+
+
+@keyframes invalidField {
+  0%  {
+    background-color: red;
+    color: white;
+  }
+
+  25% {
+    background-color: white;
+    color: black;
+  }
+
+  50% {
+    background-color: red;
+    color: white;
+  }
+
+  75% {
+    background-color: red;
+    color: white;
+  }
+
+  100% {
+    background-color: white;
+    color: black;
+  }
+}
+
+@keyframes invalidField2 {
+  0%  {
+    background-color: red;
+    color: white;
+  }
+
+  25% {
+    background-color: white;
+    color: black;
+  }
+
+  50% {
+    background-color: red;
+    color: white;
+  }
+
+  75% {
+    background-color: red;
+    color: white;
+  }
+
+  100% {
+    background-color: white;
+    color: black;
+  }
+}
+
+#firstName, #secondName, #curp1, #curp2, #curp3, #curp4, #curp5, #curp6,
+#rfc1, #rfc2, #rfc3, #imss1, #imss2, #imss3, #phoneNumber, #statementTypeValue{
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
